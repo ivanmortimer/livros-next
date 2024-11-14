@@ -3,13 +3,14 @@ import { controleLivro } from ".";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-    const { method } = req;
-    const { codigo } = req.query;
+    let { method } = req;
 
     try {
         switch (method) {
             case 'DELETE':
                 // Instrução c: responder com status 200 e o vetor de editoras em formato JSON
+                let codigo = req.query.codigo;
+                console.log("codigo =", codigo);
                 controleLivro.excluir(Number(codigo));
                 res.status(200).json({ message: 'Livro excluído com sucesso' });
                 break;

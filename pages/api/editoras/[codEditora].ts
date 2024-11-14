@@ -2,14 +2,14 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { controleEditora } from ".";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-    const { method } = req;
+    let { method } = req;
 
     try {
         switch (method) {
             case 'GET':
                 // Instrução c: responder com status 200 e o vetor de editoras em formato JSON
-                const codEditora = req.query.codEditora;
-                const nomeEditora = controleEditora.getNomeEditora(Number(codEditora));
+                let codEditora = req.query.codEditora;
+                let nomeEditora = controleEditora.getNomeEditora(Number(codEditora));
                 res.status(200).json({"nome": nomeEditora});
                 break;
 

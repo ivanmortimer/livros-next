@@ -7,20 +7,21 @@ export const controleLivro = new ControleLivro();
 
 // Função de tratamento de solicitações
 export default (req: NextApiRequest, res: NextApiResponse) => {
-    const { method } = req;
+    let { method } = req;
 
     try {
         switch (method) {
             case 'GET':
                 // Instrução c: responder com status 200 e o vetor de livros em formato JSON
-                const livros = controleLivro.obterLivros();
+                let livros = controleLivro.obterLivros();
                 res.status(200).json(livros);
                 break;
             
             case 'POST':
                 // Instrução d: responder com status 200 e o vetor de livros em formato JSON
-                const novoLivro = req.body;
+                let novoLivro = req.body;
                 controleLivro.incluir(novoLivro);
+                console.log("controleLivros.livros");
                 res.status(200).json({ message: 'Livro incluído com sucesso' });
                 break;
                 
