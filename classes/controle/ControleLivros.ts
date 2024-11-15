@@ -44,19 +44,27 @@ class ControleLivro {
 
     public incluir(livro: Livro): void {
         this.posicaoFinal++;
+        console.log("livro =", livro);
+        console.log("this.posicaoFinal =", this.posicaoFinal);
         livro.codigo = this.posicaoFinal;
+        console.log("this.livros.length ANTES INCLUIR =", this.livros.length);
         this.livros.push(livro);
+        console.log("this.livros.length DEPOIS INCLUIR =", this.livros.length);
+        console.log("this.livros INCLUIR =", this.livros);
     }
 
     public excluir(codigoLivro: number): void {
         console.log("codigoLivro =", codigoLivro);
-        console.log("livros.length", this.livros.length);
+        console.log("this.livros.length ANTES EXCLUIR 1", this.livros.length);
         const posicaoDoLivro = this.livros.findIndex((livro) => livro.codigo === codigoLivro);
         console.log("posicaoDoLivro", posicaoDoLivro);
         if (posicaoDoLivro === -1) {
             throw new Error(`Não existe um livro cujo código seja ${posicaoDoLivro}.`);
         }
+        console.log("this.livros.length ANTES EXCLUIR 2", this.livros.length);
         this.livros.splice(posicaoDoLivro, 1);
+        console.log("this.livros.length DEPOIS EXCLUIR", this.livros.length);
+        console.log("this.livros EXCLUIR =", this.livros);
     }
 }
 
